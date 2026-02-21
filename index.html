@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Al-Hassan Institute of Health Science – Yumbe</title>
+<style>
+  /* Reset and base styles */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f6f8;
+    color: #333;
+    scroll-behavior: smooth;
+  }
+
+  /* Header styles */
+  header {
+    background-color: #2c3e50;
+    padding: 30px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ecf0f1;
+  }
+
+  /* Top right container for search and datetime */
+  .top-right {
+    position: absolute;
+    top: 0px;
+    right: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    width: 250px;
+  }
+
+  /* Search styles */
+  .search-box {
+    display: flex;
+    width: 100%;
+  }
+
+  .search-box input[type="text"] {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 1em;
+  }
+
+  .search-box button {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  .search-box button:hover {
+    background-color: #3498db;
+  }
+
+  /* Date & Time styles */
+  .datetime {
+    font-size: 1em;
+    color: white;
+  
+    padding: 6px 12px;
+    border-radius: 4px;
+    width: 100%;
+    text-align: right;
+  }
+
+  /* Navigation styles */
+  nav {
+    margin-top: 10px;
+  }
+
+  .menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  }
+
+  .menu li {
+    position: relative;
+  }
+
+  .menu > li {
+    margin: 0 10px;
+  }
+
+  .menu a {
+    display: block;
+    padding: 15px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .menu a:hover {
+    background-color: #34495e;
+    color: #ffffff;
+  }
+
+  /* Dropdown styles */
+  .dropdown {
+    position: relative;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #34495e;
+    min-width: 220px;
+    flex-direction: column;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  }
+
+  .dropdown:hover > .dropdown-content {
+    display: flex;
+  }
+
+  .dropdown-content a {
+    padding: 12px 16px;
+    color: #ecf0f1;
+  }
+
+  .dropdown-content a:hover {
+    background-color: #3b5998;
+  }
+
+  /* Main container */
+  .container {
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 20px;
+  }
+
+  /* Headings */
+  h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+
+  h3 {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    color: #2980b9;
+  }
+
+  /* Paragraphs */
+  p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  /* Organization info block */
+  .org-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .org-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .detail-item {
+    flex: 1 1 45%;
+    margin-bottom: 15px;
+  }
+
+  .detail-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #2c3e50;
+  }
+
+  /* Search, DateTime, Comment Section styles */
+ .extras {
+    margin-top: 50px;
+  }
+
+ /* Search */
+ .search-box {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+ .search-box input[type="text"] {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    font-size: 1em;
+  }
+
+ .search-box button {
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+ .search-box button:hover {
+    background-color: #3498db;
+  }
+
+ /* Date & Time */
+ .datetime {
+    text-align: right;
+    font-size: 1.2em;
+    color: white;
+    margin-top: 70px;
+    margin-right: 0%;
+  }
+
+ /* Comment Section */
+ .comments {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .comments h3 {
+    margin-bottom: 15px;
+  }
+
+  form.comment-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  form.comment-form textarea {
+    resize: vertical;
+    min-height: 80px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-family: inherit;
+    font-size: 1em;
+  }
+
+  form.comment-form button {
+    align-self: flex-start;
+    padding: 10px 20px;
+    background-color: #2980b9;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+  }
+
+  form.comment-form button:hover {
+    background-color: #3498db;
+  }
+
+  /* Footer styles */
+ footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+  }
+
+  /* Responsive adjustments */
+ @media(max-width: 768px){
+    .menu {
+      flex-direction: column;
+    }
+    .menu li {
+      width: 100%;
+    }
+    .dropdown {
+      width: 100%;
+    }
+    .dropdown-content {
+      position: static;
+      box-shadow: none;
+      width: 100%;
+    }
+    .top-right {
+      position: static;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .datetime {
+      margin-top: 0;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Al-Hassan Institute of Health Science – Yumbe</h1>
+  <!-- Top right container for search and date/time -->
+  <div class="top-right">
+    <!-- Search -->
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search...">
+      <button onclick="alert('Search functionality to be implemented')">Search</button>
+    </div>
+    <!-- Auto Date & Time -->    <div class="datetime" id="dateTimeDisplay"></div>
+  </div>
+  <!-- Navigation -->
+  <nav>
+    <ul class="menu">
+      <li><a href="#about">HOME</a></li>
+      <li><a href="#about">About</a></li>
+      <li class="dropdown">
+        <a href="#">Project Details</a>
+        <ul class="dropdown-content">
+          <li><a href="summary.html">Executive Summary</a></li>
+          <li><a href="background.html">Background</a></li>
+          <li><a href="need.html">Statement of Need</a></li>
+          <li><a href="vision-mission.html">Vision & Mission</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#">Academic Programs</a>
+        <ul class="dropdown-content">
+          <li><a href="nursing.html">Nursing</a></li>
+          <li><a href="midwifery.html">Midwifery</a></li>
+          <li><a href="clinical-medicine.html">Clinical Medicine</a></li>
+          <li><a href="community-health.html">Community Health</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="container" id="about">
+
+  <!-- General Information Section -->
+  <section>
+    <h2>General Information</h2>
+    <div class="org-info">
+      <div class="org-details">
+        <div class="detail-item"><strong>Country:</strong> Uganda</div>
+        <div class="detail-item"><strong>Project Title:</strong> Establishment of Al-Hassan Institute of Health Science – Yumbe</div>
+        <div class="detail-item"><strong>Applicant Organisation:</strong> Al-Hassan Institute of Health Science – Yumbe</div>
+        <div class="detail-item"><strong>Project Theme:</strong> Integrated Health Education, Ethics, and Community Well-Being</div>
+        <div class="detail-item"><strong>Project Location:</strong> Renege Cell, Mazanga Ward, Kuru Town Council, Yumbe District</div>
+        <div class="detail-item"><strong>Contact Person:</strong> Ijomara Hassan<br />
+          <em>Title:</em> Project Head<br />
+          <em>Contact:</em> +256 771373732<br />
+          <em>Email:</em> hssnijoma@gmail.com
+        </div>
+        <div class="detail-item"><strong>Legal Holder:</strong> Ijomara Hassan</div>
+        <div class="detail-item"><strong>Total Project Budget:</strong> USD 1,061,120</div>
+        <div class="detail-item"><strong>Project Duration:</strong> 30 months</div>
+        <div class="detail-item"><strong>Proposed Start Date:</strong> January 2026</div>
+        <div class="detail-item"><strong>Relevance to UN SDGs:</strong> SDG 3, 4, 5, 8, 10, 16</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Comment Section -->
+  <section style="margin-top:50px;">
+    <h2>Comments</h2>
+    <div class="comments">
+      <h3>Leave a Comment</h3>
+      <form class="comment-form" onsubmit="return addComment();">
+        <textarea id="commentText" placeholder="Your comment..." required></textarea>
+        <button type="submit">Post Comment</button>
+      </form>
+      <div id="commentList" style="margin-top:20px; max-height:200px; overflow-y:auto;"></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2026 Al-Hassan Institute of Health Science – Yumbe. All rights reserved.</p>
+</footer>
+
+<!-- JavaScript for Date/Time & Comments -->
+<script>
+  // Display current date and time
+function updateDateTime() {
+  const now = new Date();
+  const options = { year: 'numeric', month: 'long', day: 'numeric', 
+                    hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  document.getElementById('dateTimeDisplay').textContent = now.toLocaleString(undefined, options);
+}
+setInterval(updateDateTime, 1000);
+updateDateTime();
+
+// Comment functionality
+function addComment() {
+  const commentText = document.getElementById('commentText').value.trim();
+  if (commentText === "") return false;
+  const commentList = document.getElementById('commentList');
+
+  const commentDiv = document.createElement('div');
+  commentDiv.style.borderTop = '1px solid #ccc';
+  commentDiv.style.padding = '10px 0';
+
+  const date = new Date();
+  const timestamp = date.toLocaleString();
+
+  commentDiv.innerHTML = `<strong>Anonymous</strong> <em>(${timestamp})</em>:<br/>${commentText}`;
+
+  commentList.appendChild(commentDiv);
+
+  document.getElementById('commentText').value = '';
+
+  return false; // Prevent form submission
+}
+</script>
+
+</body>
+</html>
